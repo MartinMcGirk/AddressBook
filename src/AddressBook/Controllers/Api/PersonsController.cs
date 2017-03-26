@@ -26,7 +26,8 @@ namespace AddressBook.Controllers.Api
         {
             try
             {
-                return Ok(_repository.GetAllPersonsForOrganisation(organisationId));
+                var organisation = _repository.GetOrganisationById(organisationId);
+                return Ok(organisation.Persons.OrderBy(p => p.Firstname).ToList());
             }
             catch (Exception ex)
             {

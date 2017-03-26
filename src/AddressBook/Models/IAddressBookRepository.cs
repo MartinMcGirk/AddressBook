@@ -10,6 +10,6 @@ namespace AddressBook.Models
     {
         IEnumerable<Organisation> GetAllOrganisations();
 
-        IEnumerable<Person> GetAllPersonsForOrganisation(int organisationId);
+        Organisation GetOrganisationById(int organisationId);
     }
 }
