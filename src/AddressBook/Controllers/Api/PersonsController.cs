@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace AddressBook.Controllers.Api
 {
-    [Route("api/organisations/{organisationId}/persons")]
+    
     public class PersonsController : Controller
     {
         private readonly IAddressBookRepository _repository;
@@ -21,13 +21,12 @@ namespace AddressBook.Controllers.Api
             _logger = logger;
         }
 
-        [HttpGet("")]
-        public IActionResult Get(int organisationId)
+        [HttpGet("api/persons/{personId}")]
+        public IActionResult Get(int personId)
         {
             try
             {
-                var organisation = _repository.GetOrganisationById(organisationId);
-                return Ok(organisation.Persons.OrderBy(p => p.Firstname).ToList());
+                return Ok(_repository.GetPersonById(personId));
             }
             catch (Exception ex)
             {

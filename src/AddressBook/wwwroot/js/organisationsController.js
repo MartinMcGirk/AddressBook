@@ -1,0 +1,50 @@
+﻿(function () {
+    "use strict";
+
+    //Getting the existing module
+    angular.module("app-organisations")
+        .controller("organisationsController", organisationsController);
+
+    function organisationsController($http) {
+        var vm = this;
+
+        vm.organisations = [];
+        vm.newOrganisation = {};
+
+        vm.errorMessage = "";
+        vm.isBusy = true;
+
+        $http.get("/api/organisations")
+            .then(function (response) {
+                //Success
+                angular.copy(response.data, vm.organisations);
+            },
+                function (error) {
+                    //Failure
+                    vm.errorMessage = "Failed to load data" + error;
+                })
+            .finally(function () {
+                vm.isBusy = false;
+            });
+
+        vm.addTrip = function () {
+            vm.isBusy = true;
+            vm.errorMessage = "";
+
+            $http.post("/api/organisations", vm.newOrganisation)
+                .then(function (response) {
+                    vm.organisations.push(response.data);
+                    vm.newOrganisation = {};
+                },
+                    function () {
+                        vm.errorMessage = "Failed to save new organisation";
+                    })
+                .finally(function () {
+                    vm.isBusy = false;
+                });
+
+
+        };
+    }
+
+})();

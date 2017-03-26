@@ -1,0 +1,49 @@
+﻿<div class="col-md-3">
+    <h2>{{vm.person.firstname + " " + vm.person.surname}}</h2>
+</div>
+
+<div class="col-md-9">
+    <form novalidate name="newPersonForm">
+        <div class="form-group">
+            <label>First Name*</label>
+            <input class="form-control" id="firstname" name="firstname"
+                   ng-model="vm.person.firstname"
+                   required />
+        </div>
+        <div class="form-group">
+            <label>Surname*</label>
+            <input class="form-control" id="surname" name="surname"
+                   ng-model="vm.person.surname"
+                   required />
+        </div>
+        <div class="form-group">
+            <label>Job Title</label>
+            <input class="form-control" id="jobTitle" name="jobTitle"
+                   ng-model="vm.person.jobTitle" />
+        </div>
+        <div class="form-group">
+            <label>Telephone Number</label>
+            <input class="form-control" id="telephoneNumber" name="telephoneNumber"
+                   ng-model="vm.person.contactInfo.telephoneNumber" />
+        </div>
+        <div class="form-group">
+            <label>Street Address</label>
+            <input class="form-control" id="streetAddress" name="streetAddress"
+                   ng-model="vm.person.contactInfo.streetAddress" />
+        </div>
+        <div class="form-group">
+            <label>City</label>
+            <input class="form-control" id="city" name="city"
+                   ng-model="vm.person.contactInfo.city" />
+        </div>
+        <div class="form-group">
+            <label>Postcode</label>
+            <input class="form-control" id="postCode" name="postCode"
+                   ng-model="vm.person.contactInfo.postCode" />
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Update" ng-show="vm.personId" class="btn btn-success" ng-disabled="newPersonForm.$invalid" />
+            <input type="submit" value="Add" ng-show="!vm.personId" class="btn btn-success" ng-disabled="newPersonForm.$invalid" />
+        </div>
+    </form>
+</div>

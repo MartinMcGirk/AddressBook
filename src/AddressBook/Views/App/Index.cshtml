@@ -4,35 +4,19 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-<div class="row">
-    <div class="col-md-3">
-        <h2>Organisations</h2>
-        <form>
-            <div class="form-group">
-                <div class="input-group">
-                    <input class="form-control" type="text" id="name" name="name" placeholder="Search..."/>
-                    <div class="input-group-addon"><i class="fa fa-search"></i></div>
-                </div>
-            </div>
-        </form>
-    </div>
 
-    <div class="col-md-9">
-        <table class="table table-responsive table-striped">
-            <tr>
-                <th>Organisation Name</th>
-                <th>Business Sector</th>
-                <th></th>
-            </tr>
-            @foreach (var org in Model)
-            {
-                <tr>
-                    <td>@org.Name</td>
-                    <td>@org.BusinessSector</td>
-                    <td><a asp-controller="App" asp-action="Index" class="btn btn-sm btn-primary">Manage</a></td>
-                </tr>
-            }
-        </table>
-    </div>
+@section Scripts{
+    <script src="~/lib/angular/angular.min.js"></script>
+    <script src="~/lib/angular-route/angular-route.min.js"></script>
+    <script src="~/js/app-organisations.js"></script>
+    <script src="~/js/organisationsController.js"></script>
+    <script src="~/js/organisationEditorController.js"></script>
+    <script src="~/js/personEditorController.js"></script>
+}
+
+<div class="row" ng-app="app-organisations">
+
+    <div ng-view></div>
+
 </div>
 

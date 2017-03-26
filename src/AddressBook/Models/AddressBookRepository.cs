@@ -34,9 +34,20 @@ namespace AddressBook.Models
             var org = _context.Organisations
                 .Include(o => o.ContactInfo)
                 .Include(o => o.Persons)
+                .ThenInclude(o => o.ContactInfo)
                 .FirstOrDefault(o => o.Id == organisationId);
 
             return org;
+        }
+
+        public Person GetPersonById(int personId)
+        {
+            _logger.LogInformation($"Getting person with id of {personId}");
+            var person = _context.Persons
+                .Include(o => o.ContactInfo)
+                .FirstOrDefault(o => o.Id == personId);
+
+            return person;
         }
     }
 }

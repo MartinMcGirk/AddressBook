@@ -11,5 +11,7 @@ namespace AddressBook.Models
         IEnumerable<Organisation> GetAllOrganisations();
 
         Organisation GetOrganisationById(int organisationId);
+
+        Person GetPersonById(int personId);
     }
 }

@@ -1,0 +1,38 @@
+﻿<div class="col-md-3">
+    <h2>{{vm.organisation.name}}</h2>
+    <form>
+        <div class="form-group">
+            <div class="input-group">
+                <input class="form-control" type="text" id="name" name="name" placeholder="Search..." ng-model="searchText" />
+                <div class="input-group-addon"><i class="fa fa-search"></i></div>
+            </div>
+        </div>
+    </form>
+    
+    <div>
+        <p>Tel: <a ng-href="tel:{{vm.organisation.contactInfo.telephoneNumber}}">{{vm.organisation.contactInfo.telephoneNumber}}</a></p>
+        <p>
+            {{vm.organisation.contactInfo.streetAddress}},<br />
+            {{vm.organisation.contactInfo.city}}, <br />
+            {{vm.organisation.contactInfo.postCode}}
+        </p>
+    </div>
+    
+</div>
+
+<div class="col-md-9">
+    <table class="table table-responsive table-striped">
+        <tr>
+            <th>Person</th>
+            <th>Job Title</th>
+            <th>Telephone Number</th>
+            <th></th>
+        </tr>
+        <tr ng-repeat="person in vm.organisation.persons | filter:searchText">
+            <td>{{person.firstname + " " + person.surname}}</td>
+            <td>{{person.jobTitle}}</td>
+            <td>{{person.contactInfo.telephoneNumber}}</td>
+            <td><a ng-href="#!/personEditor/{{person.id}}" class="btn btn-sm btn-primary">Manage</a></td>
+        </tr>
+    </table>
+</div>

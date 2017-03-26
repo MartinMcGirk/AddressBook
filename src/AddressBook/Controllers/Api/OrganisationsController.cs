@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace AddressBook.Controllers.Api
 {
-    [Route("api/organisations")]
+    
     public class OrganisationsController : Controller
     {
         private readonly IAddressBookRepository _repository;
@@ -21,12 +21,26 @@ namespace AddressBook.Controllers.Api
             _logger = logger;
         }
 
-        [HttpGet("")]
+        [Route("api/organisations")]
         public IActionResult Get()
         {
             try
             {
                 return Ok(_repository.GetAllOrganisations());
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to get all organisations: {ex}");
+                return BadRequest("Error occurred");
+            }
+        }
+
+        [HttpGet("/api/organisation/{organisationId}")]
+        public IActionResult GetOne(int organisationId)
+        {
+            try
+            {
+                return Ok(_repository.GetOrganisationById(organisationId));
             }
             catch (Exception ex)
             {
