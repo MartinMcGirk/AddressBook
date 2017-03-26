@@ -1,0 +1,33 @@
+﻿@using AddressBook.Models
+@model IEnumerable<AddressBook.Models.Organisation>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="row">
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="name">Search</label>
+            <input class="form-control" type="text" id="name" name="name"/>
+        </div>
+    </div>
+
+    <div class="col-md-9">
+        <table class="table table-responsive table-striped">
+            <tr>
+                <th>Organisation Name</th>
+                <th>Business Sector</th>
+                <th></th>
+            </tr>
+            @foreach (var org in Model)
+            {
+                <tr>
+                    <td>@org.Name</td>
+                    <td>@org.BusinessSector</td>
+                    <td><a asp-controller="App" asp-action="Index" class="btn btn-sm btn-primary">Manage</a></td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
