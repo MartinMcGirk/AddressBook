@@ -9,9 +9,16 @@ namespace AddressBook.Controllers.Web
 {
     public class AppController : Controller
     {
+        private readonly IAddressBookRepository _repository;
+
+        public AppController(IAddressBookRepository repository)
+        {
+            _repository = repository;
+        }
+
         public IActionResult Index()
         {
-            var orgs = GetDummyOrganisationData();
+            var orgs = _repository.GetAllOrganisations();
 
             return View(orgs);
         }
@@ -33,32 +40,6 @@ namespace AddressBook.Controllers.Web
         public IActionResult Error()
         {
             return View();
-        }
-
-        private static List<Organisation> GetDummyOrganisationData()
-        {
-            var orgs = new List<Organisation>();
-            orgs.Add(new Organisation()
-            {
-                Name = "Pepsi",
-                BusinessSector = "Soft Drinks Manufacturer"
-            });
-            orgs.Add(new Organisation()
-            {
-                Name = "CocaCola",
-                BusinessSector = "Soft Drinks Manufacturer"
-            });
-            orgs.Add(new Organisation()
-            {
-                Name = "Oxfam",
-                BusinessSector = "NonProfit"
-            });
-            orgs.Add(new Organisation()
-            {
-                Name = "Administrate",
-                BusinessSector = "Training Software"
-            });
-            return orgs;
         }
     }
 }
