@@ -1,0 +1,43 @@
+﻿<div class="col-md-3">
+    <h2>Add Organisation</h2>
+</div>
+
+<div class="col-md-9">
+    <form novalidate name="newOrganisationForm" ng-submit="vm.addOrganisation()">
+        <div class="form-group">
+            <label>Name*</label>
+            <input class="form-control" id="name" name="name"
+                   ng-model="vm.newOrganisation.name"
+                   required />
+        </div>
+        <div class="form-group">
+            <label>Business Sector*</label>
+            <input class="form-control" id="businessSector" name="businessSector"
+                   ng-model="vm.newOrganisation.businessSector"
+                   required />
+        </div>
+        <div class="form-group">
+            <label>Telephone Number</label>
+            <input class="form-control" id="telephoneNumber" name="telephoneNumber"
+                   ng-model="vm.newOrganisation.contactInfo.telephoneNumber" />
+        </div>
+        <div class="form-group">
+            <label>Street Address</label>
+            <input class="form-control" id="streetAddress" name="streetAddress"
+                   ng-model="vm.newOrganisation.contactInfo.streetAddress" />
+        </div>
+        <div class="form-group">
+            <label>City</label>
+            <input class="form-control" id="city" name="city"
+                   ng-model="vm.newOrganisation.contactInfo.city" />
+        </div>
+        <div class="form-group">
+            <label>Postcode</label>
+            <input class="form-control" id="postCode" name="postCode"
+                   ng-model="vm.newOrganisation.contactInfo.postCode" />
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Add Organisation" class="btn btn-success" ng-disabled="newOrganisationForm.$invalid" />
+        </div>
+    </form>
+</div>

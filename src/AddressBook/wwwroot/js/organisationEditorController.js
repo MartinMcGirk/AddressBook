@@ -5,7 +5,7 @@
     angular.module("app-organisations")
         .controller("organisationEditorController", organisationEditorController);
 
-    function organisationEditorController($routeParams, $http) {
+    function organisationEditorController($routeParams, $http, $location) {
         var vm = this;
         vm.organisationId = $routeParams.organisationId;
 
@@ -27,22 +27,23 @@
                 vm.isBusy = false;
             });
 
-        //vm.addStop = function () {
-        //    vm.isBusy = true;
+        vm.addPerson = function () {
+            vm.isBusy = true;
 
-        //    $http.post(url, vm.newPerson)
-        //        .then(function (response) {
-        //            vm.persons.push(response.data);
-        //            vm.newPerson = {};
-        //        },
-        //            function (err) {
-        //                vm.errorMessage = "Failed to add new stop";
-        //            })
-        //        .finally(function () {
-        //            vm.isBusy = false;
-        //        });
+            $http.post(url + '/persons', vm.newPerson)
+                .then(function (response) {
+                        vm.organisation.persons.push(response.data);
+                        vm.newPerson = {};
+                        $location.path('/manager/' + vm.organisationId);
+                    },
+                    function (err) {
+                        vm.errorMessage = "Failed to add new person";
+                    })
+                .finally(function () {
+                    vm.isBusy = false;
+                });
 
-        //}
+        }
 
     };
 

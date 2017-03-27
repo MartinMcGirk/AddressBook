@@ -1,5 +1,5 @@
 ﻿<div class="col-md-3">
-    <h2>{{vm.organisation.name}}</h2>
+    <h2><a ng-href="#"><i class="fa fa-arrow-left"></i></a> {{vm.organisation.name}}</h2>
     <form>
         <div class="form-group">
             <div class="input-group">
@@ -10,12 +10,17 @@
     </form>
     
     <div>
-        <p>Tel: <a ng-href="tel:{{vm.organisation.contactInfo.telephoneNumber}}">{{vm.organisation.contactInfo.telephoneNumber}}</a></p>
-        <p>
-            {{vm.organisation.contactInfo.streetAddress}},<br />
-            {{vm.organisation.contactInfo.city}}, <br />
-            {{vm.organisation.contactInfo.postCode}}
-        </p>
+        <address>
+            <strong>{{vm.organisation.name}} - {{vm.organisation.businessSector}}</strong><br>
+            {{vm.organisation.contactInfo.streetAddress}}<br>
+            {{vm.organisation.contactInfo.city}},<br>
+            {{vm.organisation.contactInfo.postCode}}<br>
+            <abbr title="Phone">P:</abbr> <a ng-href="tel:{{vm.organisation.contactInfo.telephoneNumber}}">{{vm.organisation.contactInfo.telephoneNumber}}</a>
+        </address>
+    </div>
+    <div>
+        <a ng-href="#!{{'/editor/' + vm.organisationId}}" class="btn btn-sm btn-default">Edit</a>
+        <a ng-href="#!{{'/editor/' + vm.organisationId + '/new'}}" class="btn btn-sm btn-primary">Add New Person</a>
     </div>
     
 </div>
@@ -32,7 +37,7 @@
             <td>{{person.firstname + " " + person.surname}}</td>
             <td>{{person.jobTitle}}</td>
             <td>{{person.contactInfo.telephoneNumber}}</td>
-            <td><a ng-href="#!{{'/editor/' + vm.organisationId + '/' + person.id}}" class="btn btn-sm btn-primary">Manage</a></td>
+            <td><a ng-href="#!{{'/manager/' + vm.organisationId + '/' + person.id}}" class="btn btn-sm btn-primary">Manage</a></td>
         </tr>
     </table>
 </div>

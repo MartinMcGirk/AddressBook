@@ -14,7 +14,11 @@
         vm.ErrorMessage = "";
         vm.isBusy = true;
 
-        var url = "/api/organisations/" + vm.organisationId + "/persons/" + vm.personId;
+        var url = "/api/organisations/" + vm.organisationId + "/persons";
+        if (vm.personId) {
+            url = url + "/" + vm.personId;
+        }
+
 
         $http.get(url)
             .then(function (response) {

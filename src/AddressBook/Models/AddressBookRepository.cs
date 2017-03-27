@@ -50,6 +50,12 @@ namespace AddressBook.Models
             return person;
         }
 
+        public void AddOrganisation(Organisation organisation)
+        {
+            _logger.LogInformation($"Adding organisation to context: {organisation.Name}");
+            _context.Organisations.Add(organisation);
+        }
+
         public void AddPersonToOrganisation(int organisationId, Person person)
         {
             _logger.LogInformation($"Adding person: {person.Firstname} {person.Surname} to organisation: {organisationId}");

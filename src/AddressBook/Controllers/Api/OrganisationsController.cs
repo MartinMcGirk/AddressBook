@@ -48,5 +48,21 @@ namespace AddressBook.Controllers.Api
                 return BadRequest("Error occurred");
             }
         }
+
+        [HttpPost("/api/organisations")]
+        public async Task<IActionResult> Post([FromBody]Organisation organisation)
+        {
+            if (ModelState.IsValid)
+            {
+                _repository.AddOrganisation(organisation);
+
+                if (await _repository.SaveChangesAsync())
+                {
+                    return Created($"api/organisations/{organisation.Id}", organisation);
+                }
+            }
+            return BadRequest("Failed to save the trip");
+        }
+
     }
 }

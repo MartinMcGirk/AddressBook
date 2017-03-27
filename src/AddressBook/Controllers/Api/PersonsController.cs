@@ -46,6 +46,7 @@ namespace AddressBook.Controllers.Api
         /// Adds a new person to an organisation
         /// </summary>
         /// <param name="organisationId">The organisation identifier</param>
+        /// <param name="person">The person object to be saved</param>
         /// <returns><see cref="CreatedResult"/> if all good. <see cref="BadRequestResult"/> if not</returns>
         [HttpPost("api/organisations/{organisationId}/persons")]
         public async Task<IActionResult> Post(int organisationId, [FromBody]Person person)

@@ -1,0 +1,16 @@
+﻿<div class="col-md-3">
+    <h2><a ng-href="#!/manager/{{vm.organisationId}}"><i class="fa fa-arrow-left"></i></a> {{vm.person.firstname + " " + vm.person.surname}}</h2>
+    <div>
+        <a ng-href="#!{{'/editor/' + vm.organisationId + '/' + vm.personId}}" class="btn btn-sm btn-default">Edit</a>
+    </div>
+</div>
+
+<div class="col-md-9">
+    <address>
+        <strong>{{vm.person.firstname}} {{vm.person.surname}} - {{vm.person.jobTitle}}</strong><br>
+        {{vm.person.contactInfo.streetAddress}}<br>
+        {{vm.person.contactInfo.city}},<br>
+        {{vm.person.contactInfo.postCode}}<br>
+        <abbr title="Phone">P:</abbr> <a ng-href="tel:{{vm.person.contactInfo.telephoneNumber}}">{{vm.person.contactInfo.telephoneNumber}}</a>
+    </address>
+</div>

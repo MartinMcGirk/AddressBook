@@ -1,49 +1,48 @@
 ﻿<div class="col-md-3">
-    <h2><a ng-href="#!/manager/{{vm.organisationId + '/' + vm.personId}}"><i class="fa fa-arrow-left"></i></a> {{vm.person.firstname + " " + vm.person.surname}}</h2>
+    <h2><a ng-href="#!/manager/{{vm.organisationId}}"><i class="fa fa-arrow-left"></i></a> Add Person</h2>
 </div>
 
 <div class="col-md-9">
-    <form novalidate name="newPersonForm">
+    <form novalidate name="newPersonForm" ng-submit="vm.addPerson()">
         <div class="form-group">
             <label>First Name*</label>
             <input class="form-control" id="firstname" name="firstname"
-                   ng-model="vm.person.firstname"
+                   ng-model="vm.newPerson.firstname"
                    required />
         </div>
         <div class="form-group">
             <label>Surname*</label>
             <input class="form-control" id="surname" name="surname"
-                   ng-model="vm.person.surname"
+                   ng-model="vm.newPerson.surname"
                    required />
         </div>
         <div class="form-group">
             <label>Job Title</label>
             <input class="form-control" id="jobTitle" name="jobTitle"
-                   ng-model="vm.person.jobTitle" />
+                   ng-model="vm.newPerson.jobTitle" />
         </div>
         <div class="form-group">
             <label>Telephone Number</label>
             <input class="form-control" id="telephoneNumber" name="telephoneNumber"
-                   ng-model="vm.person.contactInfo.telephoneNumber" />
+                   ng-model="vm.newPerson.contactInfo.telephoneNumber" />
         </div>
         <div class="form-group">
             <label>Street Address</label>
             <input class="form-control" id="streetAddress" name="streetAddress"
-                   ng-model="vm.person.contactInfo.streetAddress" />
+                   ng-model="vm.newPerson.contactInfo.streetAddress" />
         </div>
         <div class="form-group">
             <label>City</label>
             <input class="form-control" id="city" name="city"
-                   ng-model="vm.person.contactInfo.city" />
+                   ng-model="vm.newPerson.contactInfo.city" />
         </div>
         <div class="form-group">
             <label>Postcode</label>
             <input class="form-control" id="postCode" name="postCode"
-                   ng-model="vm.person.contactInfo.postCode" />
+                   ng-model="vm.newPerson.contactInfo.postCode" />
         </div>
         <div class="form-group">
-            <input type="submit" value="Update" ng-show="vm.personId" class="btn btn-success" ng-disabled="newPersonForm.$invalid" />
-            <input type="submit" value="Add" ng-show="!vm.personId" class="btn btn-success" ng-disabled="newPersonForm.$invalid" />
+            <input type="submit" value="Add Person" class="btn btn-success" ng-disabled="newPersonForm.$invalid" />
         </div>
     </form>
 </div>

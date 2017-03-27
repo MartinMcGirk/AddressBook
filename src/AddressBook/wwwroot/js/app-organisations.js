@@ -17,6 +17,30 @@
             templateUrl: "/views/organisationManagerView.html"
         });
 
+        $routeProvider.when("/editor/new", {
+            controller: "organisationsController",
+            controllerAs: "vm",
+            templateUrl: "/views/organisationAddView.html"
+        });
+
+        $routeProvider.when("/editor/:organisationId", {
+            controller: "organisationEditorController",
+            controllerAs: "vm",
+            templateUrl: "/views/organisationEditorView.html"
+        });
+
+        $routeProvider.when("/manager/:organisationId/:personId", {
+            controller: "personEditorController",
+            controllerAs: "vm",
+            templateUrl: "/views/personManagerView.html"
+        });
+
+        $routeProvider.when("/editor/:organisationId/new", {
+            controller: "organisationEditorController",
+            controllerAs: "vm",
+            templateUrl: "/views/personAddView.html"
+        });
+
         $routeProvider.when("/editor/:organisationId/:personId", {
             controller: "personEditorController",
             controllerAs: "vm",
