@@ -35,7 +35,7 @@ namespace AddressBook.Controllers.Api
             }
         }
 
-        [HttpGet("/api/organisation/{organisationId}")]
+        [HttpGet("/api/organisations/{organisationId}")]
         public IActionResult GetOne(int organisationId)
         {
             try

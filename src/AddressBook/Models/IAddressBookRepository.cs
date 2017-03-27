@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AddressBook.Models
 {
@@ -13,5 +14,8 @@ namespace AddressBook.Models
         Organisation GetOrganisationById(int organisationId);
 
         Person GetPersonById(int personId);
+        void AddPersonToOrganisation(int organisationId, Person person);
+
+        Task<bool> SaveChangesAsync();
     }
 }

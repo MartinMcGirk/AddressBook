@@ -21,7 +21,7 @@
         <tr ng-repeat="organisation in vm.organisations | filter:searchText">
             <td>{{organisation.name}}</td>
             <td>{{organisation.businessSector}}</td>
-            <td><a ng-href="#!/editor/{{organisation.id}}" class="btn btn-sm btn-primary">Manage</a></td>
+            <td><a ng-href="#!/manager/{{organisation.id}}" class="btn btn-sm btn-primary">Manage</a></td>
         </tr>
     </table>
 </div>

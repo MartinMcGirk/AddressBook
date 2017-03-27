@@ -32,7 +32,7 @@
             <td>{{person.firstname + " " + person.surname}}</td>
             <td>{{person.jobTitle}}</td>
             <td>{{person.contactInfo.telephoneNumber}}</td>
-            <td><a ng-href="#!/personEditor/{{person.id}}" class="btn btn-sm btn-primary">Manage</a></td>
+            <td><a ng-href="#!{{'/editor/' + vm.organisationId + '/' + person.id}}" class="btn btn-sm btn-primary">Manage</a></td>
         </tr>
     </table>
 </div>

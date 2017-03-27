@@ -11,13 +11,13 @@
             templateUrl: "/views/organisationsView.html"
         });
 
-        $routeProvider.when("/editor/:organisationId", {
+        $routeProvider.when("/manager/:organisationId", {
             controller: "organisationEditorController",
             controllerAs: "vm",
-            templateUrl: "/views/organisationEditorView.html"
+            templateUrl: "/views/organisationManagerView.html"
         });
 
-        $routeProvider.when("/personEditor/:personId", {
+        $routeProvider.when("/editor/:organisationId/:personId", {
             controller: "personEditorController",
             controllerAs: "vm",
             templateUrl: "/views/personEditorView.html"

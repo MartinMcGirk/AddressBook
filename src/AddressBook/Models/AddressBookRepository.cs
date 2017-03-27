@@ -49,5 +49,22 @@ namespace AddressBook.Models
 
             return person;
         }
+
+        public void AddPersonToOrganisation(int organisationId, Person person)
+        {
+            _logger.LogInformation($"Adding person: {person.Firstname} {person.Surname} to organisation: {organisationId}");
+
+            var organisation = GetOrganisationById(organisationId);
+            if (organisation != null)
+            {
+                organisation.Persons.Add(person);
+                _context.Persons.Add(person);
+            }
+        }
+
+        public async Task<bool> SaveChangesAsync()
+        {
+            return (await _context.SaveChangesAsync()) > 0;
+        }
     }
 }

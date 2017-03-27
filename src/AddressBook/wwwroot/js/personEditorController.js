@@ -8,12 +8,13 @@
     function personEditorController($routeParams, $http) {
         var vm = this;
         vm.personId = $routeParams.personId;
+        vm.organisationId = $routeParams.organisationId;
 
         vm.person = {};
         vm.ErrorMessage = "";
         vm.isBusy = true;
 
-        var url = "/api/persons/" + vm.personId;
+        var url = "/api/organisations/" + vm.organisationId + "/persons/" + vm.personId;
 
         $http.get(url)
             .then(function (response) {

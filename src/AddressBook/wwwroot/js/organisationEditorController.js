@@ -14,7 +14,7 @@
         vm.isBusy = true;
         vm.newPerson = {};
 
-        var url = "/api/organisation/" + vm.organisationId;
+        var url = "/api/organisations/" + vm.organisationId;
 
         $http.get(url)
             .then(function (response) {
