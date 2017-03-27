@@ -72,7 +72,8 @@
   },
 
   "scripts": {
-    "prepublish": [ "bower install", "dotnet bundle" ],
+    "prepublish": [ "npm install", "bower install", "dotnet bundle" ],
+    "prepare": "gulp minify",
     "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
   }
 }

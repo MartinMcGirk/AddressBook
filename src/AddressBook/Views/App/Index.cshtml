@@ -8,10 +8,18 @@
 @section Scripts{
     <script src="~/lib/angular/angular.min.js"></script>
     <script src="~/lib/angular-route/angular-route.min.js"></script>
-    <script src="~/js/app-organisations.js"></script>
-    <script src="~/js/organisationsController.js"></script>
-    <script src="~/js/organisationEditorController.js"></script>
-    <script src="~/js/personEditorController.js"></script>
+    <environment names="Development">
+        <script src="~/js/app-organisations.js"></script>
+        <script src="~/js/organisationsController.js"></script>
+        <script src="~/js/organisationEditorController.js"></script>
+        <script src="~/js/personEditorController.js"></script>
+    </environment>
+    <environment names="Production,Staging">
+        <script src="~/lib/_app/app-organisations.js"></script>
+        <script src="~/lib/_app/organisationsController.js"></script>
+        <script src="~/lib/_app/organisationEditorController.js"></script>
+        <script src="~/lib/_app/personEditorController.js"></script>
+    </environment>
 }
 
 <div class="row" ng-app="app-organisations">
