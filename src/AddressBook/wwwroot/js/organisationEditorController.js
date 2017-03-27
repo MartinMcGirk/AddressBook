@@ -45,6 +45,22 @@
 
         }
 
+        vm.updateOrganisation = function () {
+            vm.isBusy = true;
+            vm.errorMessage = "";
+
+            $http.put("/api/organisations", vm.organisation)
+                .then(function (response) {
+                    $location.path("/");
+                },
+                    function () {
+                        vm.errorMessage = "Failed to update organisation";
+                    })
+                .finally(function () {
+                    vm.isBusy = false;
+                });
+        };
+
     };
 
 })();

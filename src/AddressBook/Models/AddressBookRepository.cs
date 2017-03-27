@@ -40,16 +40,6 @@ namespace AddressBook.Models
             return org;
         }
 
-        public Person GetPersonById(int personId)
-        {
-            _logger.LogInformation($"Getting person with id of {personId}");
-            var person = _context.Persons
-                .Include(o => o.ContactInfo)
-                .FirstOrDefault(o => o.Id == personId);
-
-            return person;
-        }
-
         public void AddOrganisation(Organisation organisation)
         {
             _logger.LogInformation($"Adding organisation to context: {organisation.Name}");
@@ -65,6 +55,47 @@ namespace AddressBook.Models
             {
                 organisation.Persons.Add(person);
                 _context.Persons.Add(person);
+            }
+        }
+
+
+        public void UpdateOrganisation(Organisation organisation)
+        {
+            _logger.LogInformation($"Updating organisation: {organisation.Id}");
+
+            var record = GetOrganisationById(organisation.Id);
+            if (record != null)
+            {
+                record.Name = organisation.Name;
+                record.BusinessSector = organisation.BusinessSector;
+                if (record.ContactInfo != null)
+                {
+                    record.ContactInfo.TelephoneNumber = organisation.ContactInfo.TelephoneNumber;
+                    record.ContactInfo.StreetAddress = organisation.ContactInfo.StreetAddress;
+                    record.ContactInfo.City = organisation.ContactInfo.City;
+                    record.ContactInfo.PostCode = organisation.ContactInfo.PostCode;
+                }
+            }
+        }
+
+        public void UpdatePersonInOrganisation(int organisationId, Person person)
+        {
+            _logger.LogInformation($"Updating person: {person.Id} in organisation: {organisationId}");
+
+            var organisation = GetOrganisationById(organisationId);
+            var record = organisation?.Persons.FirstOrDefault(p => p.Id == person.Id);
+            if (record != null)
+            {
+                record.Firstname = person.Firstname;
+                record.Surname = record.Surname;
+                record.JobTitle = person.JobTitle;
+                if (record.ContactInfo != null)
+                {
+                    record.ContactInfo.TelephoneNumber = person.ContactInfo.TelephoneNumber;
+                    record.ContactInfo.StreetAddress = person.ContactInfo.StreetAddress;
+                    record.ContactInfo.City = person.ContactInfo.City;
+                    record.ContactInfo.PostCode = person.ContactInfo.PostCode;
+                }
             }
         }
 

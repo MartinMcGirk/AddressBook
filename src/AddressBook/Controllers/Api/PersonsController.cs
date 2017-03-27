@@ -67,5 +67,25 @@ namespace AddressBook.Controllers.Api
             }
             return BadRequest("Failed to save new person");
         }
+
+        [HttpPut("api/organisations/{organisationId}/persons")]
+        public async Task<IActionResult> Put(int organisationId, [FromBody]Person person)
+        {
+            try
+            {
+                _repository.UpdatePersonInOrganisation(organisationId, person);
+
+                if (await _repository.SaveChangesAsync())
+                {
+                    return Created($"/api/organisations/{organisationId}/persons/{person.Id}", person);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to get all persons: {ex}");
+                return BadRequest("Error occurred");
+            }
+            return BadRequest("Failed to save new person");
+        }
     }
 }

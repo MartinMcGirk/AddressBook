@@ -13,10 +13,11 @@ namespace AddressBook.Models
 
         Organisation GetOrganisationById(int organisationId);
 
-        Person GetPersonById(int personId);
-
         void AddOrganisation(Organisation organisation);
         void AddPersonToOrganisation(int organisationId, Person person);
+
+        void UpdateOrganisation(Organisation organisation);
+        void UpdatePersonInOrganisation(int organisationId, Person person);
 
         Task<bool> SaveChangesAsync();
     }

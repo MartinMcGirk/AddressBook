@@ -3,7 +3,7 @@
 </div>
 
 <div class="col-md-9">
-    <form novalidate name="newPersonForm">
+    <form novalidate name="newPersonForm" ng-submit="vm.updatePerson()">
         <div class="form-group">
             <label>First Name*</label>
             <input class="form-control" id="firstname" name="firstname"
@@ -42,8 +42,7 @@
                    ng-model="vm.person.contactInfo.postCode" />
         </div>
         <div class="form-group">
-            <input type="submit" value="Update" ng-show="vm.personId" class="btn btn-success" ng-disabled="newPersonForm.$invalid" />
-            <input type="submit" value="Add" ng-show="!vm.personId" class="btn btn-success" ng-disabled="newPersonForm.$invalid" />
+            <input type="submit" value="Update" class="btn btn-block btn-success" ng-disabled="newPersonForm.$invalid" />
         </div>
     </form>
 </div>

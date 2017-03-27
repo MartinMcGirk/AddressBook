@@ -61,7 +61,27 @@ namespace AddressBook.Controllers.Api
                     return Created($"api/organisations/{organisation.Id}", organisation);
                 }
             }
-            return BadRequest("Failed to save the trip");
+            return BadRequest("Failed to save the organisation");
+        }
+
+        [HttpPut("api/organisations")]
+        public async Task<IActionResult> Put([FromBody]Organisation organisation)
+        {
+            try
+            {
+                _repository.UpdateOrganisation(organisation);
+
+                if (await _repository.SaveChangesAsync())
+                {
+                    return Created($"/api/organisations/{organisation.Id}", organisation);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to update organisation: {ex}");
+                return BadRequest("Error occurred");
+            }
+            return BadRequest("Failed to update organisation");
         }
 
     }
