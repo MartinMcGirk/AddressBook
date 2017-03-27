@@ -87,5 +87,25 @@ namespace AddressBook.Controllers.Api
             }
             return BadRequest("Failed to save new person");
         }
+
+        [HttpDelete("api/organisations/{organisationId}/persons/{personId}")]
+        public async Task<IActionResult> Delete(int organisationId, int personId)
+        {
+            try
+            {
+                _repository.DeletePersonInOrganisation(organisationId, personId);
+
+                if (await _repository.SaveChangesAsync())
+                {
+                    return Ok("Record Deleted");
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to delete person: {ex}");
+                return BadRequest("Error occurred");
+            }
+            return BadRequest("Failed to delete person");
+        }
     }
 }

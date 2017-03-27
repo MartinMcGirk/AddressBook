@@ -19,6 +19,9 @@ namespace AddressBook.Models
         void UpdateOrganisation(Organisation organisation);
         void UpdatePersonInOrganisation(int organisationId, Person person);
 
+        void DeleteOrganisation(int organisationId);
+        void DeletePersonInOrganisation(int organisationId, int personId);
+
         Task<bool> SaveChangesAsync();
     }
 }

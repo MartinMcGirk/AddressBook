@@ -61,6 +61,22 @@
                 });
         };
 
+        vm.deleteOrganisation = function () {
+            vm.isBusy = true;
+            vm.errorMessage = "";
+
+            $http.delete("/api/organisations/" + vm.organisationId)
+                .then(function (response) {
+                    $location.path("/");
+                },
+                    function () {
+                        vm.errorMessage = "Failed to delete organisation";
+                    })
+                .finally(function () {
+                    vm.isBusy = false;
+                });
+        };
+
     };
 
 })();

@@ -84,5 +84,25 @@ namespace AddressBook.Controllers.Api
             return BadRequest("Failed to update organisation");
         }
 
+        [HttpDelete("api/organisations/{organisationId}")]
+        public async Task<IActionResult> Delete(int organisationId)
+        {
+            try
+            {
+                _repository.DeleteOrganisation(organisationId);
+
+                if (await _repository.SaveChangesAsync())
+                {
+                    return Ok("Record Deleted");
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to delete organisation: {ex}");
+                return BadRequest("Error occurred");
+            }
+            return BadRequest("Failed to delete organisation");
+        }
+
     }
 }

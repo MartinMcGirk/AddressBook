@@ -47,6 +47,22 @@
                 });
         };
 
+        vm.deletePerson = function () {
+            vm.isBusy = true;
+            vm.errorMessage = "";
+
+            $http.delete("/api/organisations/" + vm.organisationId + "/persons/" + vm.personId)
+                .then(function (response) {
+                    $location.path("/manager/" + vm.organisationId);
+                },
+                    function () {
+                        vm.errorMessage = "Failed to delete person";
+                    })
+                .finally(function () {
+                    vm.isBusy = false;
+                });
+        };
+
     };
 
 })();

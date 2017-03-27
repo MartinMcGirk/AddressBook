@@ -99,6 +99,24 @@ namespace AddressBook.Models
             }
         }
 
+        public void DeleteOrganisation(int organisationId)
+        {
+            _logger.LogInformation($"Deleting organisation {organisationId}");
+            var record = GetOrganisationById(organisationId);
+            _context.Organisations.Remove(record);
+        }
+
+        public void DeletePersonInOrganisation(int organisationId, int personId)
+        {
+            _logger.LogInformation($"Deleting organisation {personId}");
+            var organisation = GetOrganisationById(organisationId);
+            var person = organisation.Persons.FirstOrDefault(p => p.Id == personId);
+            if (person != null)
+            {
+                _context.Persons.Remove(person);
+            }
+        }
+
         public async Task<bool> SaveChangesAsync()
         {
             return (await _context.SaveChangesAsync()) > 0;
